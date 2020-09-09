@@ -14,7 +14,10 @@ RUN apt-get update &&\
         stable" &&\
     apt-get install docker-ce-cli
 
-#RUN usermod -aG docker gitlab-runner
+
+RUN mkdir -p /home/gitlab-runner-werf  &&\
+    chown -R gitlab-runner:gitlab-runner /home/gitlab-runner-werf &&\
+  usermod -d /home/gitlab-runner-werf gitlab-runner
 
 USER gitlab-runner
 
@@ -25,7 +28,6 @@ RUN export PATH=$PATH:$HOME/bin &&\
     cd ~/bin &&\
     curl -L https://raw.githubusercontent.com/werf/multiwerf/master/get.sh | bash
 
-RUN mkdir -p /home/gitlab-runner/.kube &&\
-    chown -R gitlab-runner:gitlab-runner /home/gitlab-runner/.kube
+RUN mkdir -p /home/gitlab-runner/.kube
 
 USER root
