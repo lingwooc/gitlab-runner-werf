@@ -19,15 +19,5 @@ RUN mkdir -p /home/gitlab-runner-werf  &&\
     chown -R gitlab-runner:gitlab-runner /home/gitlab-runner-werf &&\
   usermod -d /home/gitlab-runner-werf gitlab-runner
 
-USER gitlab-runner
-
-# add ~/bin into PATH
-RUN export PATH=$PATH:$HOME/bin &&\
-    echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc &&\
-    mkdir -p ~/bin &&\
-    cd ~/bin &&\
+RUN cd /usr/bin &&\
     curl -L https://raw.githubusercontent.com/werf/multiwerf/master/get.sh | bash
-
-RUN mkdir -p /home/gitlab-runner/.kube
-
-USER root
