@@ -27,3 +27,5 @@ RUN export PATH=$PATH:$HOME/bin &&\
 
 RUN mkdir -p /home/gitlab-runner/.kube &&\
     chown -R gitlab-runner:gitlab-runner /home/gitlab-runner/.kube
+
+USER root
