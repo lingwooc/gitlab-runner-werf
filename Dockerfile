@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-runner
+FROM gitlab/gitlab-runner:latest
 
 RUN apt-get update &&\
     apt install -y --no-install-recommends \
@@ -21,3 +21,5 @@ RUN mkdir -p /home/gitlab-runner-werf  &&\
 
 RUN cd /usr/bin &&\
     curl -L https://raw.githubusercontent.com/werf/multiwerf/master/get.sh | bash
+RUN groupadd -g 998 docker &&\
+    usermod -aG docker gitlab-runner
