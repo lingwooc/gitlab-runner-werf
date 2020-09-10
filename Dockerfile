@@ -14,11 +14,6 @@ RUN apt-get update &&\
         stable" &&\
     apt-get install docker-ce-cli
 
-
-RUN mkdir -p /home/gitlab-runner-werf  &&\
-    chown -R gitlab-runner:gitlab-runner /home/gitlab-runner-werf &&\
-  usermod -d /home/gitlab-runner-werf gitlab-runner
-
 RUN cd /usr/bin &&\
     curl -L https://raw.githubusercontent.com/werf/multiwerf/master/get.sh | bash
 RUN groupadd -g 998 docker &&\
